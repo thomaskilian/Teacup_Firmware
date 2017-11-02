@@ -13,7 +13,7 @@
 
 // The distance of any move and a single axis should never go above this limit.
 // Check move_duration and c_limit calculations in dda.c
-#define MAX_DELTA_UM (UINT32_MAX / 2400UL)
+#define MAX_DELTA_UM (UINT32_MAX / 2400L)
 
 // Enum to denote an axis
 enum axis_e { X = 0, Y, Z, E, AXIS_COUNT };
