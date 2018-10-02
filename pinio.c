@@ -16,7 +16,7 @@ void pinio_init(void) {
   SET_OUTPUT(X_DIR_PIN); WRITE(X_DIR_PIN, 0);
   #ifdef X_MIN_PIN
     SET_INPUT(X_MIN_PIN);
-    PULL_OFF(X_MIN_PIN);
+    WRITE(X_MIN_PIN, 1);
   #endif
   #ifdef X_MAX_PIN
     SET_INPUT(X_MAX_PIN);
@@ -28,7 +28,7 @@ void pinio_init(void) {
   SET_OUTPUT(Y_DIR_PIN); WRITE(Y_DIR_PIN, 0);
   #ifdef Y_MIN_PIN
     SET_INPUT(Y_MIN_PIN);
-    PULL_OFF(Y_MIN_PIN);
+    WRITE(Y_MIN_PIN, 1);
   #endif
   #ifdef Y_MAX_PIN
     SET_INPUT(Y_MAX_PIN);
@@ -42,11 +42,20 @@ void pinio_init(void) {
   #endif
   #ifdef Z_MIN_PIN
     SET_INPUT(Z_MIN_PIN);
-    PULL_OFF(Z_MIN_PIN);
+    WRITE(Z_MIN_PIN, 1);
   #endif
   #ifdef Z_MAX_PIN
     SET_INPUT(Z_MAX_PIN);
     PULL_OFF(Z_MAX_PIN);
+  #endif
+
+  #if defined Z2_STEP_PIN && defined Z2_DIR_PIN
+    SET_OUTPUT(Z2_STEP_PIN); WRITE(Z2_STEP_PIN, 0);
+    SET_OUTPUT(Z2_DIR_PIN); WRITE(Z2_DIR_PIN, 0);
+  #endif
+  #ifdef Z2_MIN_PIN
+    SET_INPUT(Z2_MIN_PIN);
+    WRITE(Z2_MIN_PIN, 1);
   #endif
 
   #if defined E_STEP_PIN && defined E_DIR_PIN
@@ -91,6 +100,16 @@ void pinio_init(void) {
       WRITE(Z_ENABLE_PIN, 0);
     #else
       WRITE(Z_ENABLE_PIN, 1);
+    #endif
+  #endif
+
+  /// Z2 Stepper Enable.
+  #ifdef Z2_ENABLE_PIN
+    SET_OUTPUT(Z2_ENABLE_PIN);
+    #ifdef Z2_INVERT_ENABLE
+      WRITE(Z2_ENABLE_PIN, 0);
+    #else
+      WRITE(Z2_ENABLE_PIN, 1);
     #endif
   #endif
 

@@ -44,14 +44,14 @@ inline void spi_deselect_sd(void) {
 //       should be used here. Currently it's a requirement that this device's
 //       Chip Select pin is actually SS, while any other pin would work just
 //       as fine.
-static void spi_select_max6675(void) __attribute__ ((always_inline));
-inline void spi_select_max6675(void) {
-  WRITE(SS, 0);
+static void spi_select_max6675(uint8_t cs) __attribute__ ((always_inline));
+inline void spi_select_max6675(uint8_t cs) {
+  digitalWrite(cs, 0);
 }
 
-static void spi_deselect_max6675(void) __attribute__ ((always_inline));
-inline void spi_deselect_max6675(void) {
-  WRITE(SS, 1);
+static void spi_deselect_max6675(uint8_t cs) __attribute__ ((always_inline));
+inline void spi_deselect_max6675(uint8_t cs) {
+  digitalWrite(cs, 1);
 }
 #endif /* TEMP_MAX6675 */
 

@@ -325,12 +325,12 @@ Z Stepper
 */
 
 #if defined Z_STEP_PIN && defined Z_DIR_PIN
-	#define	_z_step(st)					WRITE(Z_STEP_PIN, st)
+	#define	_z_step(st)					do { WRITE(Z_STEP_PIN, st); WRITE(Z2_STEP_PIN, st); } while (0)
   #define z_step()            _z_step(1)
 	#ifndef	Z_INVERT_DIR
-		#define	z_direction(dir)	WRITE(Z_DIR_PIN, dir)
+		#define	z_direction(dir)	do { WRITE(Z_DIR_PIN, dir); WRITE(Z2_DIR_PIN, dir); } while (0)
 	#else
-		#define	z_direction(dir)	WRITE(Z_DIR_PIN, (dir)^1)
+		#define	z_direction(dir)	do { WRITE(Z_DIR_PIN, (dir)^1); WRITE(Z2_DIR_PIN, (dir)^1); } while (0)
 	#endif
 #else
 	#define	_z_step(x)					do { } while (0)
@@ -426,11 +426,11 @@ Stepper Enable Pins
 
 #ifdef	Z_ENABLE_PIN
 	#ifdef	Z_INVERT_ENABLE
-		#define	z_enable()				do { WRITE(Z_ENABLE_PIN, 0); } while (0)
-		#define	z_disable()				do { WRITE(Z_ENABLE_PIN, 1); } while (0)
+		#define	z_enable()				do { WRITE(Z_ENABLE_PIN, 0); WRITE(Z2_ENABLE_PIN, 0); } while (0)
+		#define	z_disable()				do { WRITE(Z_ENABLE_PIN, 1); WRITE(Z2_ENABLE_PIN, 1); } while (0)
 	#else
-		#define	z_enable()				do { WRITE(Z_ENABLE_PIN, 1); } while (0)
-		#define	z_disable()				do { WRITE(Z_ENABLE_PIN, 0); } while (0)
+		#define	z_enable()				do { WRITE(Z_ENABLE_PIN, 1); WRITE(Z2_ENABLE_PIN, 1); } while (0)
+		#define	z_disable()				do { WRITE(Z_ENABLE_PIN, 0); WRITE(Z2_ENABLE_PIN, 0); } while (0)
 	#endif
 #else
 	#define	z_enable()					do { } while (0)

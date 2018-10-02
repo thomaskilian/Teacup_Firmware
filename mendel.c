@@ -44,7 +44,7 @@
 #include	"clock.h"
 #include	"intercom.h"
 #include "spi.h"
-#include "sd.h"
+//#include "sd.h"
 #include "display.h"
 
 #ifdef SIMINFO

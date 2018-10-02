@@ -117,7 +117,7 @@ void temp_init() {
         case TT_MAX6675:
           // Note that MAX6675's Chip Select pin is currently hardcoded to SS.
           // This isn't neccessary. See also spi.h.
-          spi_deselect_max6675();
+          spi_deselect_max6675(temp_sensors[i].additional);
           break;
       #endif
 
@@ -239,16 +239,17 @@ static uint16_t temp_max6675_read(temp_sensor_t i) {
   // Note: value reading in this section was rewritten without
   //       testing when spi.c/.h was introduced. --Traumflug
   // Note: MAX6675 can give a reading every 0.22s
-  spi_select_max6675();
+  uint8_t cs = temp_sensors[i].additional;
+  spi_select_max6675(cs);
   // No delay required, see
   // https://github.com/Traumflug/Teacup_Firmware/issues/22
 
   // Read MSB.
-  temp = spi_rw(0) << 8;
+  uint16_t temp = spi_rw(0) << 8;
   // Read LSB.
   temp |= spi_rw(0);
 
-  spi_deselect_max6675();
+  spi_deselect_max6675(cs);
 
   if ((temp & 0x4) == 0) {
     temp = temp >> 3;

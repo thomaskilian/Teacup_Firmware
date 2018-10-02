@@ -32,10 +32,10 @@
 
     Valid range: 20 to 4'0960'000 (0.02 to 40960 steps/mm)
 */
-#define STEPS_PER_M_X            40000
-#define STEPS_PER_M_Y            40000
-#define STEPS_PER_M_Z            320000
-#define STEPS_PER_M_E            96271
+#define STEPS_PER_M_X            200000
+#define STEPS_PER_M_Y            200000
+#define STEPS_PER_M_Z            1591286
+#define STEPS_PER_M_E            188679
 
 /** \def MAXIMUM_FEEDRATE_X MAXIMUM_FEEDRATE_Y MAXIMUM_FEEDRATE_Z MAXIMUM_FEEDRATE_E
   Used for G0 rapid moves and as a cap for all other feedrates.
@@ -92,14 +92,14 @@
     Sane values: according to printer build room size
     Valid range: -1000.0 to 1000.0
 */
-//#define X_MIN                    0.0
-//#define X_MAX                    200.0
+#define X_MIN                    0.0
+#define X_MAX                    200.0
 
-//#define Y_MIN                    0.0
-//#define Y_MAX                    200.0
+#define Y_MIN                    0.0
+#define Y_MAX                    200.0
 
-//#define Z_MIN                    0.0
-//#define Z_MAX                    140.0
+#define Z_MIN                    0.0
+#define Z_MAX                    200.0
 
 /** \def E_ABSOLUTE
   Some G-code creators produce relative length commands for the extruder,
@@ -132,7 +132,7 @@
   #define DEFINE_HOMING(...)
 #endif
 //DEFINE_HOMING_START
-DEFINE_HOMING(x_negative, y_negative, z_negative, none)
+DEFINE_HOMING(x_positive, y_positive, z_positive, z_positive)
 //DEFINE_HOMING_END
 
 /** \def ACCELERATION_REPRAP ACCELERATION_RAMPING ACCELERATION_TEMPORAL
@@ -204,7 +204,7 @@ DEFINE_HOMING(x_negative, y_negative, z_negative, none)
   One can't use USE_INTERNAL_PULLUPS and USE_INTERNAL_PULLDOWNS at the same
   time, of course.
 */
-//#define USE_INTERNAL_PULLUPS
+#define USE_INTERNAL_PULLUPS
 
 /** \def USE_INTERNAL_PULLDOWNS
 
@@ -259,7 +259,7 @@ DEFINE_HOMING(x_negative, y_negative, z_negative, none)
 
     Valid range: 1 to 1000
 */
-#define TEMP_EWMA                1000
+#define TEMP_EWMA                100
 
 /** \def REPORT_TARGET_TEMPS
   With this enabled, M105 commands will return the current temperatures along

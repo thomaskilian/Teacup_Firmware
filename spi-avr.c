@@ -11,7 +11,6 @@
   or moved here from mendel.c.
 */
 void spi_init() {
-
   // Set SCK (clock) and MOSI line to output, ie. set USART in master mode.
   SET_OUTPUT(SCK);
   SET_OUTPUT(MOSI);
@@ -21,7 +20,8 @@ void spi_init() {
   // See ATmega164/324/644/1284 data sheet, section 18.3.2, page 162.
   // Not written there: this must apparently be done before setting the SPRC
   // register, else future R/W-operations may hang.
-  SET_OUTPUT(SS);
+  SET_OUTPUT(DIO49);
+  SET_OUTPUT(DIO53);
 
   #ifdef SPI_2X
     SPSR = 0x01;

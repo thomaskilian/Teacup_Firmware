@@ -656,6 +656,14 @@ void process_gcode_command() {
         temp_set_wait();
 				break;
 
+			case 117:
+				//? --- M117: Display messag ---
+				//?
+				//? Example: M117 Hello world
+				//?
+				//? just ignire this M-code
+				break;
+
       case 119:
         //? --- M119: report endstop status ---
         //? Report the current status of the endstops configured in the
