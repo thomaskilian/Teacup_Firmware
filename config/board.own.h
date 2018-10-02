@@ -272,7 +272,7 @@ DEFINE_HEATER(fan,      DIO9,    0,      1,       100)
   115200, other common values are 19200, 38400 or 57600. Ignored when USB_SERIAL
   is defined.
 */
-#define BAUD                     115200
+#define BAUD                     250000
 
 /** \def XONXOFF
   Xon/Xoff flow control.

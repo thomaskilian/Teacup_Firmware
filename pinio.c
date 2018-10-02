@@ -16,7 +16,7 @@ void pinio_init(void) {
   SET_OUTPUT(X_DIR_PIN); WRITE(X_DIR_PIN, 0);
   #ifdef X_MIN_PIN
     SET_INPUT(X_MIN_PIN);
-    WRITE(X_MIN_PIN, 1);
+    PULL_OFF(X_MIN_PIN);
   #endif
   #ifdef X_MAX_PIN
     SET_INPUT(X_MAX_PIN);
@@ -28,7 +28,7 @@ void pinio_init(void) {
   SET_OUTPUT(Y_DIR_PIN); WRITE(Y_DIR_PIN, 0);
   #ifdef Y_MIN_PIN
     SET_INPUT(Y_MIN_PIN);
-    WRITE(Y_MIN_PIN, 1);
+    PULL_OFF(Y_MIN_PIN);
   #endif
   #ifdef Y_MAX_PIN
     SET_INPUT(Y_MAX_PIN);
@@ -42,7 +42,7 @@ void pinio_init(void) {
   #endif
   #ifdef Z_MIN_PIN
     SET_INPUT(Z_MIN_PIN);
-    WRITE(Z_MIN_PIN, 1);
+    PULL_OFF(Z_MIN_PIN);
   #endif
   #ifdef Z_MAX_PIN
     SET_INPUT(Z_MAX_PIN);
