@@ -6,12 +6,12 @@
 #include "temp.h"
 
 /// Default scaled P factor, equivalent to 8.0 counts/qC or 32 counts/C.
-#define DEFAULT_P         8192
+#define DEFAULT_P         9216
 /// Default scaled I factor, equivalent to 0.5 counts/(qC*qs) or 8 counts/C*s.
-#define DEFAULT_I         512
+#define DEFAULT_I         256
 /// Default scaled D factor, equivalent to 24 counts/(qc/(TH_COUNT*qs)) or
 /// 192 counts/(C/s).
-#define DEFAULT_D         24576
+#define DEFAULT_D         82944
 /// Default scaled I limit, equivalent to 384 qC*qs, or 24 C*s.
 #define DEFAULT_I_LIMIT   384
 

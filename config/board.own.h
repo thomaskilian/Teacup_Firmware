@@ -144,7 +144,7 @@
   performance.
 */
 #define TEMP_MAX6675
-//#define TEMP_THERMISTOR
+#define TEMP_THERMISTOR
 //#define TEMP_AD595
 //#define TEMP_PT100
 //#define TEMP_INTERCOM
@@ -180,8 +180,8 @@
 */
 //DEFINE_TEMP_SENSORS_START
 //                 name      type           pin    additional
-DEFINE_TEMP_SENSOR(extruder, TT_MAX6675,   AIO0,  49)
-DEFINE_TEMP_SENSOR(bed,      TT_MAX6675,   AIO1,  53)
+DEFINE_TEMP_SENSOR(extruder, TT_MAX6675,    AIO0,  49)
+DEFINE_TEMP_SENSOR(bed,      TT_THERMISTOR, AIO14,  0)
 
 // Beta algorithm      r0      beta  r2    vadc
 // Steinhart-Hart      rp      t0    r0      t1    r1      t2    r2
@@ -251,8 +251,8 @@ DEFINE_TEMP_SENSOR(bed,      TT_MAX6675,   AIO1,  53)
 //DEFINE_HEATERS_START
 
 //            name      pin      invert  pwm      max_pwm
-DEFINE_HEATER(extruder, DIO10,   0,      1,       100)
-DEFINE_HEATER(bed,      DIO8,    0,      1,       100)
+DEFINE_HEATER(extruder, DIO10,   1,      1,       100)
+DEFINE_HEATER(bed,      DIO7,    1,      1,       100)
 DEFINE_HEATER(fan,      DIO9,    0,      1,       100)
 
 #define HEATER_EXTRUDER HEATER_extruder
@@ -272,7 +272,7 @@ DEFINE_HEATER(fan,      DIO9,    0,      1,       100)
   115200, other common values are 19200, 38400 or 57600. Ignored when USB_SERIAL
   is defined.
 */
-#define BAUD                     250000
+#define BAUD                     115200
 
 /** \def XONXOFF
   Xon/Xoff flow control.
