@@ -96,7 +96,8 @@ static void clock_250ms(void) {
     temp_residency_tick();
 
     if (temp_waiting()) {
-      serial_writestr_P(PSTR("Waiting for target temp\n"));
+      temp_print(TEMP_SENSOR_none);
+//      serial_writestr_P(PSTR("T:207.0/208.0 B:43.25/50.0\n"));
       wait_for_temp = 1;
     }
     else {
