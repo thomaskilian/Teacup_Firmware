@@ -84,6 +84,7 @@ void pid_init() {
   uint8_t i;
 
   for (i = 0; i < NUM_HEATERS; i++) {
+//		sersendf_P(PSTR("test %d\n"), i);
     #ifdef HEATER_SANITY_CHECK
       // 0 is a "sane" temperature when we're trying to cool down.
       heaters_runtime[i].sane_temperature = 0;
@@ -101,14 +102,16 @@ void pid_init() {
         heaters_pid[i].i_limit =
           eeprom_read_word((uint16_t *)&EE_factors[i].EE_i_limit);
 
+//			sersendf_P(PSTR("crc:%d, epr:%d\n"), crc_block(&heaters_pid[i].p_factor, 14), eeprom_read_word((uint16_t *)&EE_factors[i].crc));
       if (crc_block(&heaters_pid[i].p_factor, 14) !=
           eeprom_read_word((uint16_t *)&EE_factors[i].crc))
       #endif /* EECONFIG */
       {
-        heaters_pid[i].p_factor = DEFAULT_P;
-        heaters_pid[i].i_factor = DEFAULT_I;
-        heaters_pid[i].d_factor = DEFAULT_D;
-        heaters_pid[i].i_limit = DEFAULT_I_LIMIT;
+        heaters_pid[i].p_factor = i == HEATER_EXTRUDER ? DEFAULT_P : DEFAULT_P_NX;
+        heaters_pid[i].i_factor = i == HEATER_EXTRUDER ? DEFAULT_I : DEFAULT_I_NX;
+        heaters_pid[i].d_factor = i == HEATER_EXTRUDER ? DEFAULT_D : DEFAULT_D_NX;
+        heaters_pid[i].i_limit = i == HEATER_EXTRUDER ? DEFAULT_I_LIMIT : DEFAULT_I_LIMIT_NX;
+//  			sersendf_P(PSTR("E:%d, P:%d I:%d D:%d lim: %d\n"), i, heaters_pid[i].p_factor, heaters_pid[i].i_factor, heaters_pid[i].d_factor, heaters_pid[i].i_limit);
       }
     #endif /* BANG_BANG */
   }

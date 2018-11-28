@@ -135,6 +135,19 @@ void process_gcode_command() {
 				//	G3 - Arc Counter-clockwise
 				// unimplemented
 
+      case 2:
+        //? --- G2: own definition; position servo
+        //? 
+        //? Example: G2 P1
+      	queue_wait();
+    		if (next_target.P == 0) servo_start(8); 
+        else servo_start(7);
+    		for (int i = 0; i < 20; i++) {
+    			clock();
+    			delay_ms(1);
+      	}
+        break;
+
 			case 4:
 				//? --- G4: Dwell ---
 				//?

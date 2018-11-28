@@ -251,9 +251,9 @@ DEFINE_TEMP_SENSOR(bed,      TT_THERMISTOR, AIO14,  0)
 //DEFINE_HEATERS_START
 
 //            name      pin      invert  pwm      max_pwm
-DEFINE_HEATER(extruder, DIO10,   1,      1,       100)
-DEFINE_HEATER(bed,      DIO7,    1,      1,       100)
-DEFINE_HEATER(fan,      DIO9,    0,      1,       100)
+DEFINE_HEATER(extruder, DIO10,   1,      0,       100)
+DEFINE_HEATER(bed,      DIO7,    1,      0,       50)
+DEFINE_HEATER(fan,      DIO9,    0,      0,       50)
 
 #define HEATER_EXTRUDER HEATER_extruder
 #define HEATER_BED HEATER_bed

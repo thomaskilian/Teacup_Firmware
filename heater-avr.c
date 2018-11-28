@@ -12,6 +12,7 @@
 #include	"crc.h"
 #include "sersendf.h"
 #include "debug.h"
+#include "cpu.h"
 
 /// \struct heater_definition_t
 /// \brief simply holds pinout data- port, pin, pwm channel if used
@@ -66,7 +67,6 @@ static const uint8_t software_pwm_needed = 0
 /// \brief initialise heater subsystem
 /// Set directions, initialise PWM timers, read PID factors from eeprom, etc
 void heater_init() {
-
 	// setup PWM timers: fast PWM
 	// Warning 2012-01-11: these are not consistent across all AVRs
 	TCCR0A = MASK(WGM01) | MASK(WGM00);
@@ -93,12 +93,18 @@ void heater_init() {
     OCR2B = 0;
   #endif
 
+
 	#ifdef	TCCR3A
-		TCCR3A = MASK(WGM30);
-		TCCR3B = MASK(WGM32) | MASK(CS30);
-		TIMSK3 = 0;
-		OCR3A = 0;
-		OCR3B = 0;
+    SET_OUTPUT(DIO3);
+    TCCR3A = 0;// set entire TCCR3A register to 0
+    TCCR3B = 0;// same for TCCR3B
+    TCNT3  = 0;//initialize counter value to 0
+    // set compare match register for 10khz increments
+    OCR3A = 199;// = (16*10^6) / (10000*64) - 1 (must be <256)
+    // turn on CTC mode
+    TCCR3A |= (1 << WGM31);
+    // Set CS31 bit for 8 prescaler
+    TCCR3B |= (1 << CS31);
 	#endif
 
 	#ifdef	TCCR4A
@@ -152,6 +158,34 @@ void heater_init() {
   #undef DEFINE_HEATER_ACTUAL
 
   pid_init();
+}
+
+int servoTicks;
+int servoWidth;
+int servoDuty;
+void servo_start(int w) {
+  servoTicks = 0;
+  servoWidth = w;
+  servoDuty = 10; // 10 ticks ~ 0.2 sec
+  WRITE(DIO3, 1);
+  // enable timer compare interrupt
+  cli();
+  TIMSK3 |= (1 << OCIE3A);
+  sei();
+}
+
+ISR(TIMER3_COMPA_vect){
+  servoTicks++;
+  if (servoTicks >= 80) {
+    servoTicks = 0;
+    WRITE(DIO3, 1);
+    servoDuty--;
+  } else if (servoTicks == servoWidth) {
+    WRITE(DIO3, 0);
+    if (servoDuty <= 0)
+      // disable timer compare interrupt
+      TIMSK3 &= ~ (1 << OCIE3A);
+  }
 }
 
 /** \brief manually set PWM output

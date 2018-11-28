@@ -5,15 +5,14 @@
 #include	<stdint.h>
 #include "temp.h"
 
-/// Default scaled P factor, equivalent to 8.0 counts/qC or 32 counts/C.
-#define DEFAULT_P         9216
-/// Default scaled I factor, equivalent to 0.5 counts/(qC*qs) or 8 counts/C*s.
-#define DEFAULT_I         256
-/// Default scaled D factor, equivalent to 24 counts/(qc/(TH_COUNT*qs)) or
-/// 192 counts/(C/s).
-#define DEFAULT_D         82944
-/// Default scaled I limit, equivalent to 384 qC*qs, or 24 C*s.
-#define DEFAULT_I_LIMIT   384
+#define DEFAULT_P         8602  /// Default scaled P factor, equivalent to 8.4 counts/qC or 34 counts/C.
+#define DEFAULT_P_NX      102400/// Default scaled P factor, equivalent to 64.0 counts/qC or 256 counts/C.
+#define DEFAULT_I         232   /// Default scaled I factor, equivalent to 0.23 counts/(qC*qs) or 1 counts/C*s.
+#define DEFAULT_I_NX      0     /// Default scaled I factor, equivalent to 0 counts/(qC*qs) or 0 counts/C*s.
+#define DEFAULT_D         79565 /// Default scaled D factor, equivalent to 77.7 counts/(qc/(TH_COUNT*qs)) or 311 counts/(C/s).
+#define DEFAULT_D_NX      0     /// Default scaled D factor, equivalent to 0 counts/(qc/(TH_COUNT*qs)) or 0 counts/(C/s).
+#define DEFAULT_I_LIMIT   384   /// Default scaled I limit, equivalent to 384 qC*qs, or 24 C*s.
+#define DEFAULT_I_LIMIT_NX 16   /// Default scaled I limit, equivalent to 16 qC*qs, or 4 C*s.
 
 /** \def HEATER_THRESHOLD
 
@@ -102,5 +101,7 @@ void heater_save_settings(void);
 #endif /* EECONFIG */
 
 void heater_print(uint16_t i);
+
+void servo_start(int w);
 
 #endif	/* _HEATER_H */

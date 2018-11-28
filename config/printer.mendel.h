@@ -93,7 +93,7 @@
     Valid range: -1000.0 to 1000.0
 */
 #define X_MIN                    0.0
-#define X_MAX                    200.0
+#define X_MAX                    243.0
 
 #define Y_MIN                    0.0
 #define Y_MAX                    200.0
