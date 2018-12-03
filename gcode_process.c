@@ -146,6 +146,7 @@ void process_gcode_command() {
     			clock();
     			delay_ms(1);
       	}
+      	queue_wait();
         break;
 
 			case 4:
