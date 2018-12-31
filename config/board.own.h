@@ -64,7 +64,8 @@
 
 #define Z_STEP_PIN               DIO46
 #define Z_DIR_PIN                DIO48
-#define Z_MIN_PIN                DIO17
+// #define Z_MIN_PIN                DIO17
+#define Z_MIN_PIN                DIO37
 #define Z_ENABLE_PIN             DIO62
 //#define Z_INVERT_DIR
 #define Z_INVERT_MIN
@@ -180,7 +181,7 @@
 */
 //DEFINE_TEMP_SENSORS_START
 //                 name      type           pin    additional
-DEFINE_TEMP_SENSOR(extruder, TT_MAX6675,    AIO0,  49)
+DEFINE_TEMP_SENSOR(extruder, TT_THERMISTOR, AIO13,  0)
 DEFINE_TEMP_SENSOR(bed,      TT_THERMISTOR, AIO14,  0)
 
 // Beta algorithm      r0      beta  r2    vadc
@@ -253,7 +254,7 @@ DEFINE_TEMP_SENSOR(bed,      TT_THERMISTOR, AIO14,  0)
 //            name      pin      invert  pwm      max_pwm
 DEFINE_HEATER(extruder, DIO10,   1,      0,       100)
 DEFINE_HEATER(bed,      DIO7,    1,      0,       70)
-DEFINE_HEATER(fan,      DIO9,    0,      0,       50)
+DEFINE_HEATER(fan,      DIO9,    0,      1,       70)
 
 #define HEATER_EXTRUDER HEATER_extruder
 #define HEATER_BED HEATER_bed

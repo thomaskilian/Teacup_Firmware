@@ -1,4 +1,3 @@
-
 /***************************************************************************\
 *                                                                           *
 * 6. MECHANICAL/HARDWARE                                                    *
@@ -35,14 +34,14 @@
 #define STEPS_PER_M_X            200000
 #define STEPS_PER_M_Y            200000
 #define STEPS_PER_M_Z            1591286
-#define STEPS_PER_M_E            188679
+#define STEPS_PER_M_E            201120
 
 /** \def MAXIMUM_FEEDRATE_X MAXIMUM_FEEDRATE_Y MAXIMUM_FEEDRATE_Z MAXIMUM_FEEDRATE_E
   Used for G0 rapid moves and as a cap for all other feedrates.
 */
-#define MAXIMUM_FEEDRATE_X       6000
-#define MAXIMUM_FEEDRATE_Y       6000
-#define MAXIMUM_FEEDRATE_Z       200
+#define MAXIMUM_FEEDRATE_X       8000
+#define MAXIMUM_FEEDRATE_Y       8000
+#define MAXIMUM_FEEDRATE_Z       900
 #define MAXIMUM_FEEDRATE_E       6000
 
 /** \def SEARCH_FEEDRATE_X SEARCH_FEEDRATE_Y SEARCH_FEEDRATE_Z
