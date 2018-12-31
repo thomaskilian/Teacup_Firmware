@@ -346,7 +346,7 @@ DEFINE_HOMING(x_positive, y_positive, z_positive, z_positive)
 
   See also: http://reprap.org/wiki/Gen7_Research#MOSFET_heat_and_PWM
 */
-//#define FAST_PWM
+#define FAST_PWM
 
 /** \def PID_SCALE
   This is the scaling of internally stored PID values. 1024L is a good value.
