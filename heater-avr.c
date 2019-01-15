@@ -166,7 +166,7 @@ int servoDuty;
 void servo_start(int w) {
   servoTicks = 0;
   servoWidth = w;
-  servoDuty = 10; // 10 ticks ~ 0.2 sec
+  servoDuty = 15; // 15 ticks ~ 0.3 sec
   WRITE(DIO3, 1);
   // enable timer compare interrupt
   cli();

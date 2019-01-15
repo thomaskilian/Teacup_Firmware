@@ -42,7 +42,7 @@
 #define MAXIMUM_FEEDRATE_X       8000
 #define MAXIMUM_FEEDRATE_Y       8000
 #define MAXIMUM_FEEDRATE_Z       900
-#define MAXIMUM_FEEDRATE_E       6000
+#define MAXIMUM_FEEDRATE_E       1500
 
 /** \def SEARCH_FEEDRATE_X SEARCH_FEEDRATE_Y SEARCH_FEEDRATE_Z
   Used when doing precision endstop search and as default feedrate. No
