@@ -2,6 +2,6 @@ board: mega.atmega2560
 target: Teacup_Firmware
 frequency: 16M
 ignore: [cmsis-startup_lpc11xx.s, cmsis-startup_stm32f411xe.s]
-upload: pi@octopi:/home/pi
+upload: pi@3dp:/home/pi
 usb: /dev/ttyUSB0
 prog: wiring
