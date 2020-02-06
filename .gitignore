@@ -15,9 +15,4 @@ doc
 datalog.out
 configtool.ini
 
-# Atmel Studio project files.
-.vs/
-*.atsln
-*.atsuo
-*.componentinfo.xml
-*.cproj
+.DS_Store
