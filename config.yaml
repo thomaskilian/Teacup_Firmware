@@ -5,3 +5,4 @@ ignore: [cmsis-startup_lpc11xx.s, cmsis-startup_stm32f411xe.s]
 upload: pi@3dp:/home/pi
 usb: /dev/ttyUSB0
 prog: wiring
+baud: 115200
